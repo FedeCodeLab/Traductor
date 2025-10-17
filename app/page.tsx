@@ -1,103 +1,140 @@
-import Image from "next/image";
+"use client";
+
+import useTranslatorStore from "../store/translatorStore";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const {
+    inputText,
+    outputText,
+    sourceLanguage,
+    targetLanguage,
+    setInputText,
+    setSourceLanguage,
+    setTargetLanguage,
+    translate,
+    swapLanguages,
+    startVoiceRecognition,
+    speakTranslation,
+  } = useTranslatorStore();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="container">
+      <header className="header">
+        <div className="header-content">
+          <div className="logo">
+            <span className="google-g">G</span>
+            <span className="google-o1">o</span>
+            <span className="google-o2">o</span>
+            <span className="google-g">g</span>
+            <span className="google-l">l</span>
+            <span className="google-e">e</span>
+            <span className="traductor">Traductor</span>
+          </div>
         </div>
+      </header>
+
+      <div id="apiWarning" className="api-warning" style={{ display: "none" }}>
+        ⚠️ APIs nativas de traducción no disponibles. Funcionalidad limitada.
+      </div>
+
+      <section className="language-selection">
+        <div className="source-language">
+          <select
+            id="sourceLanguage"
+            value={sourceLanguage}
+            onChange={(e) => setSourceLanguage(e.target.value)}
+          >
+            <option value="auto">Detectar idioma</option>
+            <option value="en">Inglés</option>
+            <option value="es">Español</option>
+            <option value="fr">Francés</option>
+            <option value="de">Alemán</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Portugués</option>
+            <option value="ru">Ruso</option>
+            <option value="ja">Japonés</option>
+            <option value="zh">Chino</option>
+          </select>
+        </div>
+
+        <button
+          className="swap-languages icon-button"
+          id="swapLanguages"
+          onClick={() => swapLanguages()}
+        >
+          <span className="material-symbols-outlined">swap_horiz</span>
+        </button>
+
+        <div className="target-language">
+          <select
+            id="targetLanguage"
+            value={targetLanguage}
+            onChange={(e) => setTargetLanguage(e.target.value)}
+          >
+            <option value="en">Inglés</option>
+            <option value="es">Español</option>
+            <option value="fr">Francés</option>
+            <option value="de">Alemán</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Portugués</option>
+            <option value="ru">Ruso</option>
+            <option value="ja">Japonés</option>
+            <option value="zh">Chino</option>
+          </select>
+        </div>
+      </section>
+
+      <main className="translation-area">
+        <section className="input-section">
+          <div className="textarea-container">
+            <textarea
+              id="inputText"
+              placeholder="Introduce el texto"
+              maxLength={5000}
+              value={inputText}
+              onChange={(e) => {
+                setInputText(e.target.value);
+                if (inputText.trim()) {
+                  setTimeout(() => translate(), 500);
+                }
+              }}
+            />
+          </div>
+          <footer className="input-controls">
+            <button
+              className="icon-button mic-button"
+              id="micButton"
+              onClick={() => startVoiceRecognition()}
+            >
+              <span className="material-symbols-outlined">mic</span>
+            </button>
+          </footer>
+        </section>
+
+        <section className="output-section">
+          <div className="textarea-container">
+            <output id="outputText">{outputText}</output>
+
+            <footer className="output-controls">
+              <button
+                className="icon-button copy-button"
+                id="copyButton"
+                onClick={() => navigator.clipboard.writeText(outputText)}
+              >
+                <span className="material-symbols-outlined">content_copy</span>
+              </button>
+
+              <button
+                className="icon-button speaker-button"
+                id="speakerButton"
+                onClick={() => speakTranslation()}
+              >
+                <span className="material-symbols-outlined">volume_up</span>
+              </button>
+            </footer>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
