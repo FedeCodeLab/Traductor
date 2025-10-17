@@ -89,38 +89,6 @@ body {
   justify-content: space-between;
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-}
-
-.google-g {
-  color: var(--google-blue);
-}
-
-.google-o1 {
-  color: var(--google-red);
-}
-
-.google-o2 {
-  color: var(--google-yellow);
-}
-
-.google-l {
-  color: var(--google-green);
-}
-
-.google-e {
-  color: var(--google-red);
-}
-
-.traductor {
-  color: var(--text-secondary);
-  margin-left: 4px;
-}
-
 /* Language Selection */
 .icon-button {
   display: flex;
