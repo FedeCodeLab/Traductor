@@ -172,6 +172,14 @@ select {
   }
 }
 
+.dark select option {
+  background-color: #171717 !important;
+}
+
+select option {
+  background-color: #ffffff !important;
+}
+
 .input-controls,
 .output-controls {
   display: flex;
