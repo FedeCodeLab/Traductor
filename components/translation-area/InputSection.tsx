@@ -14,6 +14,7 @@ export const InputSection = () => {
           placeholder="Introduce el texto"
           maxLength={5000}
           value={inputText}
+          className="min-h-[30vh] md:min-h-auto "
           onChange={(e) => {
             setInputText(e.target.value);
             if (inputText.trim()) {
@@ -22,7 +23,7 @@ export const InputSection = () => {
           }}
         />
       </div>
-      <footer className="input-controls border-t border-b border-l border-r rounded-bl-[10px] border-highlight-neutral-300 dark:border-neutral-500">
+      <footer className="input-controls border-t border-b border-l border-r !rounded-bl-none md:rounded-bl-[10px] border-highlight-neutral-300 dark:border-neutral-500">
         <button
           className="icon-button mic-button dark:bg-neutral-800"
           id="micButton"
