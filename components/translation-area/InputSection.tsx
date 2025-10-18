@@ -7,7 +7,7 @@ export const InputSection = () => {
     useTranslatorStore();
 
   return (
-    <section className="input-section">
+    <section className="flex flex-1 flex-col border-r border-highlight-neutral-300 dark:border-neutral-500">
       <div className="textarea-container">
         <textarea
           id="inputText"
@@ -22,9 +22,9 @@ export const InputSection = () => {
           }}
         />
       </div>
-      <footer className="input-controls">
+      <footer className="input-controls border-t border-highlight-neutral-300 dark:border-neutral-500">
         <button
-          className="icon-button mic-button"
+          className="icon-button mic-button dark:bg-neutral-800"
           id="micButton"
           onClick={() => startVoiceRecognition()}
         >
