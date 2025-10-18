@@ -14,8 +14,8 @@ export default function Home() {
       <ToggleTheme />
       <ApiWarning />
 
-      <div className="border border-highlight-neutral-300 dark:border-neutral-500 rounded-[10px] bg-white dark:bg-neutral-900 min-w-full">
-        <section className="language-selection border-b border-highlight-neutral-300 dark:border-neutral-500">
+      <div className="rounded-[10px] bg-white dark:bg-neutral-900 min-w-full">
+        <section className="language-selection rounded-t-[10px] border border-highlight-neutral-300 dark:border-neutral-500">
           <SourceLanguage />
 
           <ButtonSwap />

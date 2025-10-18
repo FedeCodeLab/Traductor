@@ -7,8 +7,8 @@ export const InputSection = () => {
     useTranslatorStore();
 
   return (
-    <section className="flex flex-1 flex-col border-r border-highlight-neutral-300 dark:border-neutral-500">
-      <div className="textarea-container">
+    <section className="flex flex-1 flex-col">
+      <div className="textarea-container border-l border-r border-highlight-neutral-300 dark:border-neutral-500">
         <textarea
           id="inputText"
           placeholder="Introduce el texto"
@@ -22,7 +22,7 @@ export const InputSection = () => {
           }}
         />
       </div>
-      <footer className="input-controls border-t border-highlight-neutral-300 dark:border-neutral-500">
+      <footer className="input-controls border-t border-b border-l border-r rounded-bl-[10px] border-highlight-neutral-300 dark:border-neutral-500">
         <button
           className="icon-button mic-button dark:bg-neutral-800"
           id="micButton"

@@ -1,4 +1,5 @@
 "use client";
+
 import useThemeStore from "@/store/themeStore";
 
 export const ToggleTheme = () => {
@@ -6,11 +7,19 @@ export const ToggleTheme = () => {
 
   return (
     <button
-      className="cursor-pointer fixed z-50 size-16 bottom-10 right-10 border-2 bg-white hover:bg-highlight-neutral-300 border-neutral-300 dark:bg-transparent rounded-full"
+      className="cursor-pointer fixed z-50 size-16 bottom-10 right-10 border-2 dark:border bg-white dark:bg-neutral-800 border-neutral-300 rounded-full transition-transform duration-300 hover:scale-110"
       onClick={toggleTheme}
       aria-label="Cambiar tema"
     >
-      <span className="text-[26px]">{theme === "light" ? "🌞" : "🌙"}</span>
+      {theme === "light" ? (
+        <span className="material-symbols-outlined text-[28px] icon-button hover:!bg-transparent">
+          sunny
+        </span>
+      ) : (
+        <span className="material-symbols-outlined text-[28px] icon-button hover:!bg-transparent">
+          bedtime
+        </span>
+      )}
     </button>
   );
 };

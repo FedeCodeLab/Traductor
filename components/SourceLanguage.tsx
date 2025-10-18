@@ -11,7 +11,7 @@ export const SourceLanguage = () => {
         id="sourceLanguage"
         value={sourceLanguage}
         onChange={(e) => setSourceLanguage(e.target.value)}
-        className=""
+        className="border  bg-highlight-neutral-100 dark:bg-neutral-800 border-highlight-neutral-300 dark:border-neutral-500"
       >
         <option value="auto">Detectar idioma</option>
         <option value="en">Inglés</option>
