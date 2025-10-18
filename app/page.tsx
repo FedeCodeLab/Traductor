@@ -10,11 +10,11 @@ import { ToggleTheme } from "@/components/ui/ToggleTheme";
 
 export default function Home() {
   return (
-    <div className="container relative min-h-screen flex items-center justify-center">
+    <div className="container relative min-h-screen flex md:items-center justify-center">
       <ToggleTheme />
       <ApiWarning />
 
-      <div className="rounded-[10px] bg-white dark:bg-neutral-900 min-w-full">
+      <div className="max-w-[90%] mx-auto md:mx-0 md:max-w-none rounded-[10px] bg-white dark:bg-neutral-900 md:min-w-full">
         <section className="language-selection rounded-t-[10px] border border-highlight-neutral-300 dark:border-neutral-500">
           <SourceLanguage />
 
@@ -23,7 +23,7 @@ export default function Home() {
           <TargetLanguage />
         </section>
 
-        <main className="translation-area ">
+        <main className="flex flex-col md:flex-row h-[250px]">
           <InputSection />
 
           <OutputSection />

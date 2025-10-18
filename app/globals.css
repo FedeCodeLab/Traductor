@@ -142,10 +142,6 @@ select {
 }
 
 /* Input and Output translations */
-.translation-area {
-  display: flex;
-  height: 250px;
-}
 
 .textarea-container {
   flex: 1;
