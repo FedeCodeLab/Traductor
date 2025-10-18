@@ -6,11 +6,16 @@ export const OutputSection = () => {
   const { outputText, speakTranslation } = useTranslatorStore();
 
   return (
-    <section className="output-section">
+    <section className="flex flex-1 flex-col">
       <div className="textarea-container">
-        <output id="outputText">{outputText}</output>
+        <output
+          id="outputText"
+          className="text-highlight-text-neutral dark:text-neutral-300"
+        >
+          {outputText}
+        </output>
 
-        <footer className="output-controls">
+        <footer className="output-controls border-t border-highlight-neutral-300 dark:border-neutral-500">
           <button
             className="icon-button copy-button"
             id="copyButton"

@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400&display=swap"
@@ -35,7 +35,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-highlight-neutral-100 dark:bg-neutral-800 text-highlight-text-neutral dark:text-neutral-300`}
       >
         {children}
       </body>

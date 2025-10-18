@@ -6,10 +6,11 @@ export const TargetLanguage = () => {
   const { targetLanguage, setTargetLanguage } = useTranslatorStore();
 
   return (
-    <div className="target-language">
+    <div className="target-language text-highlight-text-neutral dark:text-neutral-300">
       <select
         id="targetLanguage"
         value={targetLanguage}
+        className="text-highlight-text-neutral dark:text-neutral-300"
         onChange={(e) => setTargetLanguage(e.target.value)}
       >
         <option value="en">Inglés</option>
