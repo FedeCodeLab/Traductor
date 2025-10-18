@@ -10,7 +10,7 @@ export const TargetLanguage = () => {
       <select
         id="targetLanguage"
         value={targetLanguage}
-        className="text-highlight-text-neutral dark:text-neutral-300"
+        className="text-highlight-text-neutral dark:text-neutral-300 border bg-highlight-neutral-100 dark:bg-neutral-800 border-highlight-neutral-300 dark:border-neutral-500"
         onChange={(e) => setTargetLanguage(e.target.value)}
       >
         <option value="en">Inglés</option>
